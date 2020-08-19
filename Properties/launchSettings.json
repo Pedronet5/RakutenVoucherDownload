@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "RakutenVoucherDownload": {
+      "commandName": "Project",
+      "commandLineArgs": "BaixarXMLVoucher"
+    }
+  }
+}
