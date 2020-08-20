@@ -1,33 +1,30 @@
 ﻿using Newtonsoft.Json;
-using RakutenVoucherDownload.AppService;
 using RakutenVoucherDownload.Comunication;
 using RakutenVoucherDownload.Infra.CrossCutting.IoC;
 using RestSharp;
+using RestSharp.Extensions;
+using RestSharp.Serialization.Xml;
 using System;
-using System.Collections.Generic;
-using System.Net.Http;
+using System.IO;
 using System.Text;
-using System.Threading.Tasks;
+using System.Xml;
+using System.Xml.Serialization;
 
 namespace RakutenVoucherDownload.Services.Rakuten
 {
     public class BaixarXMLVouchers
     {
-        public string Username { get; private set; }
-        public string Password { get; private set; }
         public string UrlToken { get; private set; }
+        public string UrlCoupon { get; private set; }
+        public string CaminhoXML { get; private set; }
         public string Authorization { get; private set; }
-        public string Scoped { get; private set; }
         private Token Token { get; set; }
-
-        private DateTime TokenDate { get; set; }
 
         public BaixarXMLVouchers(Configuracoes configuracoes)
         {
-            Username = configuracoes.Username;
-            Password = configuracoes.Password;
             UrlToken = configuracoes.UrlToken;
-            Scoped = configuracoes.Scoped;
+            UrlCoupon = configuracoes.UrlCoupon;
+            CaminhoXML = configuracoes.CaminhoXML;
             Authorization = configuracoes.Authorization;
         }
 
@@ -60,7 +57,6 @@ namespace RakutenVoucherDownload.Services.Rakuten
                     request.AddHeader("authorization", this.Authorization);
                     IRestResponse response = client.Execute(request);
 
-                    TokenDate = DateTime.Now;
                     token = JsonConvert.DeserializeObject<Token>(response.Content);
                 }
 
@@ -73,18 +69,29 @@ namespace RakutenVoucherDownload.Services.Rakuten
 
         }
 
-        private static string EncodeToBase64(string value)
-        {
-            var toEncodeAsBytes = Encoding.UTF8.GetBytes(value);
-            return Convert.ToBase64String(toEncodeAsBytes);
-        }
-
         public bool ProcessarBaixaXML()
         {
             Token = this.GetAccessTokenAsync();
 
             if (Token != null)
             {
+                var client = new RestClient(this.UrlCoupon);
+                var request = new RestRequest(Method.GET);
+                request.AddHeader("authorization", "Bearer " + Token.AccessToken);
+                IRestResponse response = client.Execute(request);
+
+                var caminho = this.CaminhoXML + "\\Voucher.xml";
+
+                bool exists = Directory.Exists(this.CaminhoXML);
+
+                if (!exists)
+                    Directory.CreateDirectory(this.CaminhoXML);
+
+                File.WriteAllBytes(caminho, Encoding.ASCII.GetBytes(response.Content));
+
+                XmlDocument doc = new XmlDocument();
+                doc.LoadXml(response.Content);
+                doc.Save(caminho);
 
             }
 

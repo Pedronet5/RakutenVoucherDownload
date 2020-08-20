@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\pleite\\Desktop\\Pedro\\Projeto\\RakutenVoucherDownload\\RakutenVoucherDownload.csproj": {}
+    "C:\\Users\\pleite\\Documents\\Auu\\RakutenVoucherDownload\\RakutenVoucherDownload.csproj": {}
   },
   "projects": {
-    "C:\\Users\\pleite\\Desktop\\Pedro\\Projeto\\RakutenVoucherDownload\\RakutenVoucherDownload.csproj": {
+    "C:\\Users\\pleite\\Documents\\Auu\\RakutenVoucherDownload\\RakutenVoucherDownload.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\pleite\\Desktop\\Pedro\\Projeto\\RakutenVoucherDownload\\RakutenVoucherDownload.csproj",
+        "projectUniqueName": "C:\\Users\\pleite\\Documents\\Auu\\RakutenVoucherDownload\\RakutenVoucherDownload.csproj",
         "projectName": "RakutenVoucherDownload",
-        "projectPath": "C:\\Users\\pleite\\Desktop\\Pedro\\Projeto\\RakutenVoucherDownload\\RakutenVoucherDownload.csproj",
+        "projectPath": "C:\\Users\\pleite\\Documents\\Auu\\RakutenVoucherDownload\\RakutenVoucherDownload.csproj",
         "packagesPath": "C:\\Users\\pleite\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\pleite\\Desktop\\Pedro\\Projeto\\RakutenVoucherDownload\\obj\\",
+        "outputPath": "C:\\Users\\pleite\\Documents\\Auu\\RakutenVoucherDownload\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -41,10 +41,6 @@
       "frameworks": {
         "netcoreapp3.1": {
           "dependencies": {
-            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
-              "target": "Package",
-              "version": "[6.0.0, )"
-            },
             "Microsoft.Extensions.Configuration": {
               "target": "Package",
               "version": "[2.2.0, )"
@@ -54,10 +50,6 @@
               "version": "[2.2.0, )"
             },
             "Microsoft.Extensions.Configuration.Json": {
-              "target": "Package",
-              "version": "[2.2.0, )"
-            },
-            "Microsoft.Extensions.DependencyInjection": {
               "target": "Package",
               "version": "[2.2.0, )"
             },

@@ -1,6 +1,4 @@
-﻿using AutoMapper;
-using Microsoft.Extensions.DependencyInjection;
-using RakutenVoucherDownload.Enums;
+﻿using RakutenVoucherDownload.Enums;
 using RakutenVoucherDownload.Infra.CrossCutting.IoC;
 using RakutenVoucherDownload.Services.Rakuten;
 using System;

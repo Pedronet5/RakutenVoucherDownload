@@ -5,10 +5,9 @@ namespace RakutenVoucherDownload.Infra.CrossCutting.IoC
 {
     public class Configuracoes
     {
-        public string Username { get; set; }
-        public string Password { get; set; }
-        public string Scoped { get; set; }
         public string UrlToken { get; set; }
+        public string UrlCoupon { get; set; }
+        public string CaminhoXML { get; set; }
         public string Authorization { get; set; }
 
         public Configuracoes()
@@ -21,9 +20,8 @@ namespace RakutenVoucherDownload.Infra.CrossCutting.IoC
 
             UrlToken = config.GetSection("TokenRakuten:UrlToken").Value;
             Authorization = config.GetSection("TokenRakuten:Authorization").Value;
-            Username = config.GetSection("TokenRakuten:Username").Value;
-            Password = config.GetSection("TokenRakuten:Password").Value;
-            Scoped = config.GetSection("TokenRakuten:Scoped").Value;
+            UrlCoupon = config.GetSection("TokenRakuten:UrlCoupon").Value;
+            CaminhoXML = config.GetSection("TokenRakuten:CaminhoXML").Value;
 
 
         }
