@@ -33,7 +33,6 @@ namespace RakutenVoucherDownload.Services.Rakuten
             try
             {
                 var processar = ProcessarBaixaXML();
-
                 return processar;
 
             }
@@ -75,28 +74,64 @@ namespace RakutenVoucherDownload.Services.Rakuten
 
             if (Token != null)
             {
-                var client = new RestClient(this.UrlCoupon);
-                var request = new RestRequest(Method.GET);
-                request.AddHeader("authorization", "Bearer " + Token.AccessToken);
-                IRestResponse response = client.Execute(request);
+                this.LimparDiretorio();
 
-                var caminho = this.CaminhoXML + "\\Voucher.xml";
+                var numeroPaginas = GetRequestedVoucher(1);
 
-                bool exists = Directory.Exists(this.CaminhoXML);
-
-                if (!exists)
-                    Directory.CreateDirectory(this.CaminhoXML);
-
-                File.WriteAllBytes(caminho, Encoding.ASCII.GetBytes(response.Content));
-
-                XmlDocument doc = new XmlDocument();
-                doc.LoadXml(response.Content);
-                doc.Save(caminho);
+                if (numeroPaginas > 1)
+                {
+                    for (int i = 1; i < numeroPaginas; i++)
+                    {
+                        this.GetRequestedVoucher(i+1);
+                    }
+                }
 
             }
 
             return true;
         }
+
+        public int GetRequestedVoucher(int numeroPagina)
+        {
+            var client = new RestClient(this.UrlCoupon + "?pagenumber="+ numeroPagina);
+            var request = new RestRequest(Method.GET);
+            request.AddHeader("authorization", "Bearer " + Token.AccessToken);
+            IRestResponse response = client.Execute(request);
+
+            string caminho;
+            caminho = this.CaminhoXML + "\\Voucher_ " + numeroPagina + ".xml";
+
+            bool exists = Directory.Exists(this.CaminhoXML);
+
+            if (!exists)
+                Directory.CreateDirectory(this.CaminhoXML);
+
+            File.WriteAllBytes(caminho, Encoding.ASCII.GetBytes(response.Content));
+
+            XmlDocument doc = new XmlDocument();
+            doc.LoadXml(response.Content);
+            doc.Save(caminho);
+
+            if (response.Content.ToString().Contains("PageNumberRequested"))
+            {
+                var posicao = response.Content.ToString().IndexOf("TotalPages>") + 11;
+                numeroPagina = Convert.ToInt32(response.Content.ToString().Substring(posicao, 1));
+            }
+
+            return numeroPagina;
+        }
+
+        public void LimparDiretorio()
+        {
+            System.IO.DirectoryInfo di = new DirectoryInfo(this.CaminhoXML);
+
+            foreach (FileInfo file in di.GetFiles())
+            {
+                file.Delete();
+            }
+        }
+
+
     }
 
 }
