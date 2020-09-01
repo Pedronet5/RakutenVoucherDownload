@@ -26,6 +26,7 @@ C:\Users\pleite\Documents\Auu\RakutenVoucherDownload\bin\Release\netcoreapp3.1\r
 C:\Users\pleite\Documents\Auu\RakutenVoucherDownload\bin\Release\netcoreapp3.1\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
 C:\Users\pleite\Documents\Auu\RakutenVoucherDownload\bin\Release\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\pleite\Documents\Auu\RakutenVoucherDownload\bin\Release\netcoreapp3.1\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
+C:\Users\pleite\Documents\Auu\RakutenVoucherDownload\obj\Release\netcoreapp3.1\RakutenVoucherDownload.csprojAssemblyReference.cache
 C:\Users\pleite\Documents\Auu\RakutenVoucherDownload\obj\Release\netcoreapp3.1\RakutenVoucherDownload.AssemblyInfoInputs.cache
 C:\Users\pleite\Documents\Auu\RakutenVoucherDownload\obj\Release\netcoreapp3.1\RakutenVoucherDownload.AssemblyInfo.cs
 C:\Users\pleite\Documents\Auu\RakutenVoucherDownload\obj\Release\netcoreapp3.1\RakutenVoucherDownload.csproj.CoreCompileInputs.cache
